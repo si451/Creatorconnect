@@ -19,9 +19,19 @@ CORS(app)
 # Load mock data from data folder
 def load_mock_data():
     try:
-        with open('data/mock_instagram_influencers.json', 'r') as f:
+        # Get the base directory for the application
+        base_dir = os.path.dirname(os.path.abspath(__file__))
+        
+        # In production, data will be in the 'data' directory at the root level
+        # In development, it will be in the 'agents/data' directory
+        data_dir = os.path.join(base_dir, '..', 'data')
+        if not os.path.exists(data_dir):
+            data_dir = os.path.join(base_dir, 'data')
+            
+        # Load the mock data files
+        with open(os.path.join(data_dir, 'mock_instagram_influencers.json'), 'r') as f:
             instagram_profiles = json.load(f)
-        with open('data/mock_youtube_influencers.json', 'r') as f:
+        with open(os.path.join(data_dir, 'mock_youtube_influencers.json'), 'r') as f:
             youtube_profiles = json.load(f)
         return instagram_profiles + youtube_profiles
     except Exception as e:

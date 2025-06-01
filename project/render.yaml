@@ -1,0 +1,15 @@
+services:
+  - type: web
+    name: creatorconnect-api
+    env: python
+    buildCommand: pip install -r requirements.txt
+    startCommand: gunicorn app:app
+    envVars:
+      - key: PORT
+        value: 3001
+      - key: PYTHON_VERSION
+        value: 3.9.0
+    disk:
+      name: data
+      mountPath: /data
+      sizeGB: 1 
