@@ -65,7 +65,7 @@ export default function ChatInterface({ creatorDetails }: ChatInterfaceProps) {
   const [sessionId, setSessionId] = useState<string | null>(null);
   const messagesEndRef = useRef<HTMLDivElement>(null);
 
-  const API_BASE_URL = process.env.NEXT_PUBLIC_API_BASE_URL || 'http://localhost:3001/api';
+  const API_BASE_URL = `${process.env.NEXT_PUBLIC_API_URL}/api`;
 
   // Load session ID from local storage or generate a new one
   useEffect(() => {
