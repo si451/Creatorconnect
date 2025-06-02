@@ -32,32 +32,38 @@ export function Header() {
             </Link>
           </div>
 
-          {!isHomePage && (
-            <nav className="hidden md:flex items-center gap-1">
-              {NAV_ITEMS.map((item) => {
-                const Icon = item.icon;
-                return (
-                  <Link
-                    key={item.href}
-                    href={item.href}
-                    className={cn(
-                      "flex items-center gap-2 px-3 py-2 text-sm font-medium rounded-md transition-colors font-mono",
-                      pathname === item.href
-                        ? "bg-[#1A1A1A] text-[#00FF94]"
-                        : "text-white hover:text-[#00FF94] hover:bg-[#1A1A1A]"
-                    )}
-                  >
-                    <Icon className="h-4 w-4" />
-                    {item.label}
-                  </Link>
-                );
-              })}
-            </nav>
-          )}
+          <nav className="hidden md:flex items-center gap-1">
+            {NAV_ITEMS.map((item) => {
+              const Icon = item.icon;
+              return (
+                <Link
+                  key={item.href}
+                  href={item.href}
+                  className={cn(
+                    "flex items-center gap-2 px-3 py-2 text-sm font-medium rounded-md transition-colors font-mono",
+                    pathname === item.href
+                      ? "bg-[#1A1A1A] text-[#00FF94]"
+                      : "text-white hover:text-[#00FF94] hover:bg-[#1A1A1A]"
+                  )}
+                >
+                  <Icon className="h-4 w-4" />
+                  {item.label}
+                </Link>
+              );
+            })}
+          </nav>
 
           <div className="flex items-center gap-4">
             <ThemeToggle />
-            {!isHomePage && (
+            {isHomePage ? (
+              <Link href="/search">
+                <Button 
+                  className="bg-[#00FF94] text-black hover:bg-[#00FF94]/90 font-bold font-mono"
+                >
+                  Get Started
+                </Button>
+              </Link>
+            ) : (
               <Link href="/profile">
                 <Button 
                   variant="ghost" 

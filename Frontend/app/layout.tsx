@@ -12,6 +12,15 @@ const jetbrainsMono = JetBrains_Mono({ subsets: ['latin'], variable: '--font-mon
 export const metadata: Metadata = {
   title: 'CreatorConnect',
   description: 'Connect with creators and grow your brand',
+  metadataBase: new URL('https://creatorconnect.vercel.app'),
+  openGraph: {
+    title: 'CreatorConnect',
+    description: 'Connect with creators and grow your brand',
+    url: 'https://creatorconnect.vercel.app',
+    siteName: 'CreatorConnect',
+    locale: 'en_US',
+    type: 'website',
+  },
 };
 
 export default function RootLayout({

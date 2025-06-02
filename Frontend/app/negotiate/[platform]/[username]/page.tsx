@@ -1,5 +1,6 @@
 "use client";
 
+import * as React from "react";
 import { useState, useEffect } from "react";
 import { useParams } from "next/navigation";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
@@ -19,6 +20,7 @@ import {
   SelectValue,
 } from "@/components/ui/select";
 import DocumentGenerator from '@/components/negotiation/document-generator';
+
 interface Creator {
   platform: string;
   username: string;
@@ -41,7 +43,7 @@ export default function NegotiatePage() {
   const [recruiterType, setRecruiterType] = useState<string>("");
   const [recruiterName, setRecruiterName] = useState<string>("");
   const [recruiterFullName, setRecruiterFullName] = useState<string>("");
-  const [recruiterEmail, setRecruiterEmail] = useState<string>(""); // New state for recruiter email
+  const [recruiterEmail, setRecruiterEmail] = useState<string>("");
   const [budget, setBudget] = useState<string>("");
   const [proposal, setProposal] = useState<string>("");
   const [isSubmitting, setIsSubmitting] = useState(false);
@@ -90,7 +92,7 @@ export default function NegotiatePage() {
     loadCreator();
   }, [params]);
 
-  const handleSubmit = async (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     setIsSubmitting(true);
     
@@ -98,7 +100,7 @@ export default function NegotiatePage() {
       // Prepare the form data
       const submitFormData = {
         recruiterType,
-        recruiterFullName,  // Add the new field here
+        recruiterFullName,
         recruiterName,
         recruiterEmail,
         budget: parseFloat(budget) || 0,
@@ -151,7 +153,7 @@ export default function NegotiatePage() {
               The creator you're looking for doesn't exist.
             </p>
             <Link href="/search">
-              <Button variant="outline" className="mt-4 font-mono border-[#00FF94] text-[#00FF94] hover:bg-[#00FF94] hover:text-black">
+              <Button className="mt-4 font-mono border-[#00FF94] text-[#00FF94] hover:bg-[#00FF94] hover:text-black">
                 <ArrowLeft className="mr-2 h-4 w-4" />
                 Back to Search
               </Button>
@@ -420,7 +422,7 @@ export default function NegotiatePage() {
                               <Checkbox 
                                 id="exclusivity" 
                                 checked={exclusivity}
-                                onCheckedChange={(e) => setExclusivity(e === true)} 
+                                onCheckedChange={(checked: boolean) => setExclusivity(checked)} 
                               />
                               <label htmlFor="exclusivity" className="text-sm font-medium font-mono text-white">
                                 Exclusive agreement (creator cannot work with competing brands during campaign)

@@ -52,7 +52,7 @@ export function MobileNav() {
               )}
             >
               <div className="flex items-center justify-center">
-                {getIcon(item.icon)}
+                {getIcon(item.name)}
               </div>
               <span className="text-xs mt-1">{item.name}</span>
             </Link>

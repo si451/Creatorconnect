@@ -84,7 +84,7 @@ export function SearchFilters({ onFilterChange }: SearchFiltersProps) {
                     <Checkbox
                   id={platform}
                       checked={filters.platforms.includes(platform)}
-                  onCheckedChange={(checked) => {
+                  onCheckedChange={(checked: boolean) => {
                     const newPlatforms = checked
                       ? [...filters.platforms, platform]
                       : filters.platforms.filter((p) => p !== platform);
@@ -108,7 +108,7 @@ export function SearchFilters({ onFilterChange }: SearchFiltersProps) {
                     <Checkbox
                   id={niche}
                       checked={filters.niches.includes(niche)}
-                  onCheckedChange={(checked) => {
+                  onCheckedChange={(checked: boolean) => {
                     const newNiches = checked
                       ? [...filters.niches, niche]
                       : filters.niches.filter((n) => n !== niche);
@@ -132,7 +132,7 @@ export function SearchFilters({ onFilterChange }: SearchFiltersProps) {
               max={1000000}
               step={10000}
               value={filters.followers}
-              onValueChange={(value) => handleFilterChange({ ...filters, followers: value as [number, number] })}
+              onValueChange={(value: [number, number]) => handleFilterChange({ ...filters, followers: value })}
             />
             <div className="flex justify-between text-sm text-muted-foreground">
               <span>{filters.followers[0].toLocaleString()}</span>
@@ -150,7 +150,7 @@ export function SearchFilters({ onFilterChange }: SearchFiltersProps) {
                   max={10}
                   step={0.1}
               value={filters.engagement}
-              onValueChange={(value) => handleFilterChange({ ...filters, engagement: value as [number, number] })}
+              onValueChange={(value: [number, number]) => handleFilterChange({ ...filters, engagement: value })}
                 />
             <div className="flex justify-between text-sm text-muted-foreground">
               <span>{filters.engagement[0]}%</span>
@@ -168,7 +168,7 @@ export function SearchFilters({ onFilterChange }: SearchFiltersProps) {
                 <Checkbox
                   id={location}
                   checked={filters.locations.includes(location)}
-                  onCheckedChange={(checked) => {
+                  onCheckedChange={(checked: boolean) => {
                     const newLocations = checked
                       ? [...filters.locations, location]
                       : filters.locations.filter((l) => l !== location);

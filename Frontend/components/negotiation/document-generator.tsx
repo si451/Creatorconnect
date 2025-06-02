@@ -179,7 +179,7 @@ export default function DocumentGenerator({ formData, onDocumentsGenerated }: Do
 
   // Function to format email display (separate subject and body)
   const formatEmailDisplay = (emailTemplate: string) => {
-    const subjectMatch = emailTemplate.match(/SUBJECT: (.*?)(?=\n\nBODY:)/s);
+    const subjectMatch = emailTemplate.match(/SUBJECT: (.*?)(?=\n\nBODY:)/);
     const bodyMatch = emailTemplate.match(/BODY:([\s\S]*)/);
     
     const subject = subjectMatch ? subjectMatch[1].trim() : "";

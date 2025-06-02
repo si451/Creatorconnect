@@ -79,8 +79,8 @@ export default function SearchPage() {
     setError(null);
     
     try {
-      const searchEngine = InfluencerSearchEngine.getInstance();
-      const searchResults = await searchEngine.search(query);
+      const searchEngine = new InfluencerSearchEngine();
+      const searchResults = await searchEngine.search(query, '');
       
       if (!searchResults || searchResults.length === 0) {
         setResults([]);
@@ -95,7 +95,7 @@ export default function SearchPage() {
         .filter(result => result.platform === "Instagram")
         .slice(0, 9);
       
-      setResults([...youtubeFiltered, ...instagramFiltered]);
+      setResults([...youtubeFiltered, ...instagramFiltered] as unknown as Influencer[]);
     } catch (error) {
       console.error("Search error:", error);
       setError("Failed to search creators. Please try again.");

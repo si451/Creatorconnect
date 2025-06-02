@@ -167,7 +167,7 @@ export default function ChatInterface({ creatorDetails }: ChatInterfaceProps) {
         return <div className="message-text capabilities">{content}</div>;
       case 'email_draft':
         // Assuming content might be formatted as SUBJECT:\n\nBODY:\n...
-        const subjectMatch = content.match(/^SUBJECT: (.*)\n\nBODY:\n/s);
+        const subjectMatch = content.match(/^SUBJECT: (.*)\n\nBODY:\n/);
         const subject = subjectMatch ? subjectMatch[1] : 'No Subject';
         const body = subjectMatch ? content.substring(subjectMatch[0].length) : content;
         return (
