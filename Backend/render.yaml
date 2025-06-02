@@ -1,0 +1,40 @@
+services:
+  - type: web
+    name: creatorconnect-express-api
+    env: node
+    buildCommand: npm install
+    startCommand: npm start
+    envVars:
+      - key: NODE_ENV
+        value: production
+      - key: PORT
+        value: 3000
+      - key: SUPABASE_URL
+        sync: false
+      - key: SUPABASE_KEY
+        sync: false
+    healthCheckPath: /health
+    autoDeploy: true
+
+  - type: web
+    name: creatorconnect-flask-api
+    env: python
+    buildCommand: |
+      pip install -r requirements.txt
+      pip install -r agents/requirements.txt
+    startCommand: python agents/app.py
+    envVars:
+      - key: FLASK_ENV
+        value: production
+      - key: PORT
+        value: 5000
+      - key: SUPABASE_URL
+        sync: false
+      - key: SUPABASE_KEY
+        sync: false
+      - key: RAZORPAY_KEY_ID
+        sync: false
+      - key: RAZORPAY_KEY_SECRET
+        sync: false
+    healthCheckPath: /api/search
+    autoDeploy: true 

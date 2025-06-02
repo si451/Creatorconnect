@@ -13,8 +13,19 @@ import base64
 # Load environment variables
 load_dotenv()
 
+# Set Flask environment
+os.environ['FLASK_ENV'] = 'production'
+
 app = Flask(__name__)
 CORS(app)
+
+# Configure production settings
+if os.environ.get('FLASK_ENV') == 'production':
+    app.config['DEBUG'] = False
+    app.config['TESTING'] = False
+else:
+    app.config['DEBUG'] = True
+    app.config['TESTING'] = True
 
 # Load mock data from data folder
 def load_mock_data():
