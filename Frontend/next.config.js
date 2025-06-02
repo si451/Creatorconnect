@@ -14,7 +14,6 @@ const nextConfig = {
   },
   experimental: {
     serverActions: {
-      allowedOrigins: ['localhost:3000', 'creatorconnect.vercel.app'],
       bodySizeLimit: '2mb'
     }
   },
